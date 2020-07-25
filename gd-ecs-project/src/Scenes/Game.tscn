@@ -27,6 +27,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2( 1008.09, 413.724 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D2"]
+margin_left = -951.0
+margin_top = -5.0
+margin_right = 953.0
+margin_bottom = 11.0
+color = Color( 0.0117647, 0.0431373, 0.823529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2( 1457.65, 189.883 )
+rotation = -0.239787
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D3"]
+margin_left = -951.0
+margin_top = -5.0
+margin_right = 953.0
+margin_bottom = 11.0
+color = Color( 0.945098, 0, 0.266667, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 470.998, 102.645 )
 

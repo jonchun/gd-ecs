@@ -42,4 +42,5 @@ script = ExtResource( 10 )
 
 [node name="C_Camera2D" type="Camera2D" parent="."]
 current = true
+smoothing_enabled = true
 script = ExtResource( 9 )

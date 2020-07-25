@@ -93,16 +93,6 @@ _global_script_classes=[ {
 "class": "SystemManager",
 "language": "GDScript",
 "path": "res://src/gd-ecs/SystemManager.gd"
-}, {
-"base": "Reference",
-"class": "WAT",
-"language": "GDScript",
-"path": "res://addons/WAT/namespace.gd"
-}, {
-"base": "",
-"class": "WATTest",
-"language": "GDScript",
-"path": "res://addons/WAT/core/test/test.gd"
 } ]
 _global_script_class_icons={
 "C_Camera2D": "",
@@ -121,9 +111,7 @@ _global_script_class_icons={
 "S_KinematicMotion2D": "",
 "S_PlayerInput": "",
 "System": "",
-"SystemManager": "",
-"WAT": "",
-"WATTest": ""
+"SystemManager": ""
 }
 
 [WAT]
@@ -151,7 +139,7 @@ D="*res://src/Autoloads/Debug.gd"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "WAT" )
+enabled=PoolStringArray(  )
 
 [input]
 
