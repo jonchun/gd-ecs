@@ -123,7 +123,9 @@ func _init() -> void:
 		for e in entities:
 			print(e)
 	```
-	This Jump system requires an Entity to have `C_Jump` and `C_KinematicMotion2D` components to even consider looking at the Entity. However, because I've provided an optional `entity_filter`, it now will do a check on the `class_name()` of the Entity before passing it into the system ticks. 
+	This Jump system requires an Entity to have `C_Jump` and `C_KinematicMotion2D` components to even consider looking at the Entity. However, because I've provided an optional `entity_filter`, it now will do a check on the `class_name()` of the Entity before passing it into the system ticks.
+
+	The following code is completely equivalent to the above.
 	```
 	class_name S_Jump
 	extends System
@@ -134,9 +136,8 @@ func _init() -> void:
 		
 	func _system_physics_process(entities: Array, delta: float) -> void:
 		for e in entities:
-			if e is KinematicBody2D:
-				continue
-			print(e)
+			if e.get_class() == "KinematicBody2D":
+				print(e)
 	```
 	I know that this is probably going to be one of the more debatable features of gd-ecs, so I've made it purely optional. If you want to be a little bit more "ECS", you can instead attach an empty Component called `C_IsKinematicBody2D` to your Entity and instead filter with
 	```
