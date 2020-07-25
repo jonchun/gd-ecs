@@ -1,0 +1,186 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Camera2D",
+"class": "C_Camera2D",
+"language": "GDScript",
+"path": "res://src/Components/C_Camera2D.gd"
+}, {
+"base": "CollisionShape2D",
+"class": "C_CollisionShape2D",
+"language": "GDScript",
+"path": "res://src/Components/C_CollisionShape2D.gd"
+}, {
+"base": "Node",
+"class": "C_Input",
+"language": "GDScript",
+"path": "res://src/Components/C_Input.gd"
+}, {
+"base": "Node",
+"class": "C_IsKinematicBody2D",
+"language": "GDScript",
+"path": "res://src/Components/C_KinematicBody2D.gd"
+}, {
+"base": "Node",
+"class": "C_Jump",
+"language": "GDScript",
+"path": "res://src/Components/C_Jump.gd"
+}, {
+"base": "Node",
+"class": "C_KinematicMotion2D",
+"language": "GDScript",
+"path": "res://src/Components/C_KinematicMotion2D.gd"
+}, {
+"base": "Node",
+"class": "C_Player",
+"language": "GDScript",
+"path": "res://src/Components/C_Player.gd"
+}, {
+"base": "Sprite",
+"class": "C_Sprite",
+"language": "GDScript",
+"path": "res://src/Components/C_Sprite.gd"
+}, {
+"base": "Reference",
+"class": "ECS",
+"language": "GDScript",
+"path": "res://src/gd-ecs/ECS.gd"
+}, {
+"base": "Node",
+"class": "Entity",
+"language": "GDScript",
+"path": "res://src/gd-ecs/Entity.gd"
+}, {
+"base": "Node",
+"class": "QueryManager",
+"language": "GDScript",
+"path": "res://src/gd-ecs/QueryManager.gd"
+}, {
+"base": "System",
+"class": "S_ActionEventEmitter",
+"language": "GDScript",
+"path": "res://src/Systems/S_ActionEventEmitter.gd"
+}, {
+"base": "System",
+"class": "S_Jump",
+"language": "GDScript",
+"path": "res://src/Systems/S_Jump.gd"
+}, {
+"base": "Node",
+"class": "S_KinematicMotion2D",
+"language": "GDScript",
+"path": "res://src/Systems/S_KinematicMotion2D.gd"
+}, {
+"base": "System",
+"class": "S_PlayerInput",
+"language": "GDScript",
+"path": "res://src/Systems/S_PlayerInput.gd"
+}, {
+"base": "Node",
+"class": "System",
+"language": "GDScript",
+"path": "res://src/gd-ecs/System.gd"
+}, {
+"base": "Node",
+"class": "SystemManager",
+"language": "GDScript",
+"path": "res://src/gd-ecs/SystemManager.gd"
+}, {
+"base": "Reference",
+"class": "WAT",
+"language": "GDScript",
+"path": "res://addons/WAT/namespace.gd"
+}, {
+"base": "",
+"class": "WATTest",
+"language": "GDScript",
+"path": "res://addons/WAT/core/test/test.gd"
+} ]
+_global_script_class_icons={
+"C_Camera2D": "",
+"C_CollisionShape2D": "",
+"C_Input": "",
+"C_IsKinematicBody2D": "",
+"C_Jump": "",
+"C_KinematicMotion2D": "",
+"C_Player": "",
+"C_Sprite": "",
+"ECS": "",
+"Entity": "",
+"QueryManager": "",
+"S_ActionEventEmitter": "",
+"S_Jump": "",
+"S_KinematicMotion2D": "",
+"S_PlayerInput": "",
+"System": "",
+"SystemManager": "",
+"WAT": "",
+"WATTest": ""
+}
+
+[WAT]
+
+Test_Directory="res://tests"
+Results_Directory="res://tests/results/WAT"
+Minimize_Window_When_Running_Tests=false
+TestStrategy={
+"repeat": 1,
+"strategy": "RunAll"
+}
+Tags=PoolStringArray(  )
+Display=8
+
+[application]
+
+config/name="gd-ecs Demo Project"
+run/main_scene="res://src/Scenes/Game.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Globals="*res://src/Autoloads/Globals.gd"
+D="*res://src/Autoloads/Debug.gd"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "WAT" )
+
+[input]
+
+move_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
+ ]
+}
+jump={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

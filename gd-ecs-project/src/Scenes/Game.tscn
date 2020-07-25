@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/Entities/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/gd-ecs/SystemManager.gd" type="Script" id=2]
+[ext_resource path="res://src/Systems/S_KinematicMotion2D.gd" type="Script" id=3]
+[ext_resource path="res://src/Systems/S_PlayerInput.gd" type="Script" id=4]
+[ext_resource path="res://src/Systems/S_ActionEventEmitter.gd" type="Script" id=5]
+[ext_resource path="res://src/Systems/S_Jump.gd" type="Script" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 958.516, 10 )
+
+[node name="Game" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 231.229, 579.253 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+margin_left = -951.0
+margin_top = -5.0
+margin_right = 953.0
+margin_bottom = 11.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 470.998, 102.645 )
+
+[node name="SystemManager" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="S_PlayerInput" type="Node" parent="SystemManager"]
+script = ExtResource( 4 )
+
+[node name="S_ActionEventEmitter" type="Node" parent="SystemManager"]
+script = ExtResource( 5 )
+
+[node name="S_KinematicMotion2D" type="Node" parent="SystemManager"]
+script = ExtResource( 3 )
+
+[node name="S_Jump" type="Node" parent="SystemManager"]
+script = ExtResource( 6 )
