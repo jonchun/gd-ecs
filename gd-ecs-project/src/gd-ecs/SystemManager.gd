@@ -38,18 +38,17 @@ func _process(delta: float) -> void:
 	for system in systems:
 		if not system.has_method("_system_process"):
 			continue
-		var entities: Array = query_manager.query(system.requirements)
 		var tps_vec: Vector2 = _tps_map[system]
 		if tps_vec.x > 0:
 			tps_vec.y += delta
 			if tps_vec.y < tps_vec.x:
 				_tps_map[system] = tps_vec
 				continue
-			system.call("_system_process", entities, tps_vec.y)
+			system.call("_system_process", query_entities(system), tps_vec.y)
 			tps_vec.y -= tps_vec.x
 			_tps_map[system] = tps_vec
 		else:
-			system.call("_system_process", entities, delta)
+			system.call("_system_process", query_entities(system), delta)
 
 
 func _physics_process(delta: float) -> void:
@@ -58,8 +57,7 @@ func _physics_process(delta: float) -> void:
 	for system in systems:
 		if not system.has_method("_system_physics_process"):
 			continue
-		var entities: Array = query_manager.query(system.requirements)
-		system.call("_system_physics_process", entities, delta)
+		system.call("_system_physics_process", query_entities(system), delta)
 
 
 func _get_configuration_warning() -> String:
@@ -93,6 +91,11 @@ func get_destination_signal(destination: String) -> String:
 	if not has_user_signal(dest_signal):
 		add_user_signal(dest_signal)
 	return dest_signal
+
+
+func query_entities(system: Node) -> Array:
+	var entity_filter: Array = system.get("entity_filter") if "entity_filter" in system else []
+	return query_manager.query(system.requirements, entity_filter)
 
 
 # Subscribes to a destination. callback_name is the method to be called.

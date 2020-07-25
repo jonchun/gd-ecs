@@ -18,12 +18,15 @@ func _ready() -> void:
 
 # Returns an Array of all entities that have the components defined in query_list
 # Assumes that the query_list is sorted
-func query(query_list: Array) -> Array:
+func query(query_list: Array, entity_filter: = []) -> Array:
 	var results := []
 	var entity_list: Array = component_groups.get(query_list, [])
 	for entity_id in entity_list:
-#		var entity: Entity = component_map[component_id]
 		var entity: Node = instance_from_id(entity_id)
+		if entity_filter:
+			var entity_class: String = entity.get_class()
+			if not entity_class in entity_filter or "!%s" % entity_class in entity_filter:
+				continue
 		results.append(entity)
 
 	return results

@@ -1,5 +1,6 @@
 
 
+
 # gd-ecs
 
 This repository is my first attempt at creating an [ECS (Entity Component System)](https://en.wikipedia.org/wiki/Entity_component_system) to work alongside the Godot Game Engine. I've been researching it quite a bit recently and am very interested in its philosophy. It is by no means perfect, but I'm enjoying the workflow so far, so it could be worth sharing. If anything, it's an interesting paradigm shift that others might be interested in.
@@ -27,7 +28,7 @@ For now, clone the repository (which is just a sample project). I may refactor t
 gd-ecs, like every other ECS, consists of Entities, Components, and Systems. My core philosophy behind creating this system was to integrate well with Godot's pre-existing concepts and to sort-of allow for the "best of both worlds" of Godot's built-in Object-oriented Inheritance model and the benefits of writing code in ECS fashion.
 
 ## SystemManager
-By default, your game should have at least one SystemManager Node. A SystemManager manages all of your Systems and glues all of gd-ecs together. It is worth noting that it is not necessary for Entities to be children (or sub-children) of the SystemManager. Internally the SystemManager has a QueryManager that will listen for all changes and update its internal cache of Entity/Component requirements even at runtime. You just use `add_child()` and `remove_child()` as you would normally, but if you happen to be adding/removing an Entity or a Component, gd-ecs will know about it automatically. (no need to call special methods like `add_component()` or something)
+By default, your game should have at least one SystemManager Node. A SystemManager manages all of your Systems and glues all of gd-ecs together. It is worth noting that it is not necessary for Entities to be children (or sub-children) of the SystemManager. Internally the SystemManager has a QueryManager that will listen for all changes and update its internal registry of Entity/Component requirements even at runtime. You just use `add_child()` and `remove_child()` as you would normally, but if you happen to be adding/removing an Entity or a Component, gd-ecs will know about it automatically. (no need to call special methods like `add_component()` or something)
 
 
 ## Components
@@ -35,7 +36,7 @@ Components in gd-ecs are pretty traditional. They are data-only and represent st
 
 gd-ecs uses duck-typing to determine whether a Node is a Component. It simply checks that the `component_name` property exists and is not empty.
 
-Here is an example of the `C_KinematicMotion2D` Component. It simply contains a few exported variables and state variables. Very traditional.
+Here is an example of the `C_KinematicMotion2D` Component. It simply contains a few exported variables and state variables. Very standard stuff.
 ```
 class_name C_KinematicMotion2D
 extends Node
@@ -107,6 +108,41 @@ func _init() -> void:
 	system_name = "S_OtherInput"
 	requirements = ["C_Input", "!C_Player"]
 ```
+3. Systems have an **OPTIONAL** Array `entity_filter` that is an Array of Strings containing a filter for the entities that the System will retrieve during its `_system_process()` and `_system_physics_process()`  cycles. Since in gd-ecs, Entities can be any node and aren't just an id, it might be more accurate to describe them as "Assemblages" or "Archetypes".  Essentially, think of `Entity.gd` as just a normal entity that's a container of components, but attaching the `Entity.gd` script to for example, to Godot's `KinematicBody2D` really just turns it into an Entity with a `KinematicBody2D` Component that can't be removed. This filter string matches against Godot's `get_class()` method, so it can only match Godot's built-in Nodes, not custom classes. Similarly to the regular component requirements, you can negate it with a `!`. 
+	In the below example, let's look at what is happening:
+	```
+	class_name S_Jump
+	extends System
+
+	func _init() -> void:
+		entity_filter = ["KinematicBody2D"]
+		system_name = "S_Jump"
+		requirements = ["C_Jump", "C_KinematicMotion2D"]
+		
+	func _system_physics_process(entities: Array, delta: float) -> void:
+		for e in entities:
+			print(e)
+	```
+	This Jump system requires an Entity to have `C_Jump` and `C_KinematicMotion2D` components to even consider looking at the Entity. However, because I've provided an optional `entity_filter`, it now will do a check on the `class_name()` of the Entity before passing it into the system ticks. 
+	```
+	class_name S_Jump
+	extends System
+
+	func _init() -> void:
+		system_name = "S_Jump"
+		requirements = ["C_Jump", "C_KinematicMotion2D"]
+		
+	func _system_physics_process(entities: Array, delta: float) -> void:
+		for e in entities:
+			if e is KinematicBody2D:
+				continue
+			print(e)
+	```
+	I know that this is probably going to be one of the more debatable features of gd-ecs, so I've made it purely optional. If you want to be a little bit more "ECS", you can instead attach an empty Component called `C_IsKinematicBody2D` to your Entity and instead filter with
+	```
+	requirements = ["C_IsKinematicBody2D", "C_Jump", "C_KinematicMotion2D"]
+	```
+	**Bonus Note:** Because the entity filter runs on every tick rather than rebuilding the query manager's internal registry with Component requirements, it can be changed on the fly at runtime and there will be no issues with it. If for whatever reason, you had a System that normally acts on 2 different entity types, but perhaps you wanted to filter out one of them for some reason, if you change the `entity_filter`, the `entities` passed in the tick parameters will be filtered out in the next tick. That being said, I don't really see much of a use case for this... I'm just documenting it because i guess it's a possible feature that's really just a side effect of the implementation.
 
 ### System API
 Systems have 3 virtual methods that get called automatically by the SystemManager.

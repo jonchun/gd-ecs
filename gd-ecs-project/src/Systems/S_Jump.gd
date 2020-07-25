@@ -3,8 +3,9 @@ extends System
 
 
 func _init() -> void:
+	entity_filter = ["KinematicBody2D"]
 	system_name = "S_Jump"
-	requirements = ["C_IsKinematicBody2D", "C_Jump", "C_KinematicMotion2D"]
+	requirements = ["C_Jump", "C_KinematicMotion2D"]
 
 
 func _system_ready() -> void:

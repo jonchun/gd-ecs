@@ -1,6 +1,7 @@
 class_name System
 extends Node
 
+var entity_filter: Array
 var system_manager: SystemManager
 var system_name: String
 var requirements: Array

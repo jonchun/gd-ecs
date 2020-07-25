@@ -1,8 +1,9 @@
 class_name S_KinematicMotion2D
 extends Node
 
+const entity_filter : = ["KinematicBody2D"]
 const system_name := "S_KinematicMotion2D"
-const requirements = ["C_IsKinematicBody2D", "C_KinematicMotion2D"]
+const requirements = ["C_KinematicMotion2D"]
 
 export var acceleration_default := Vector2(5000.0, 0.0)
 export var max_speed_default := Vector2(400.0, 1200.0)

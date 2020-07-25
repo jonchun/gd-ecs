@@ -25,11 +25,6 @@ _global_script_classes=[ {
 "path": "res://src/Components/C_Input.gd"
 }, {
 "base": "Node",
-"class": "C_IsKinematicBody2D",
-"language": "GDScript",
-"path": "res://src/Components/C_IsKinematicBody2D.gd"
-}, {
-"base": "Node",
 "class": "C_Jump",
 "language": "GDScript",
 "path": "res://src/Components/C_Jump.gd"
@@ -98,7 +93,6 @@ _global_script_class_icons={
 "C_Camera2D": "",
 "C_CollisionShape2D": "",
 "C_Input": "",
-"C_IsKinematicBody2D": "",
 "C_Jump": "",
 "C_KinematicMotion2D": "",
 "C_Player": "",
