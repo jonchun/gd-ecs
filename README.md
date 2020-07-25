@@ -1,4 +1,5 @@
 
+
 # gd-ecs
 
 This repository is my first attempt at creating an [ECS (Entity Component System)](https://en.wikipedia.org/wiki/Entity_component_system) to work alongside the Godot Game Engine. I've been researching it quite a bit recently and am very interested in its philosophy. It is by no means perfect, but I'm enjoying the workflow so far, so it could be worth sharing. If anything, it's an interesting paradigm shift that others might be interested in.
@@ -107,7 +108,7 @@ func _init() -> void:
 	requirements = ["C_Input", "!C_Player"]
 ```
 
-### Virtual Methods for Systems 
+### System API
 Systems have 3 virtual methods that get called automatically by the SystemManager.
 
 1. `_system_ready() -> void`  is called after the SystemManager completes the validation of all of its children Systems and has registered all their requirements.
@@ -123,6 +124,38 @@ Systems have 3 virtual methods that get called automatically by the SystemManage
 3. `_system_physics_process(entities: Array, delta: float) -> void:` does exactly what you might guess. It is called on every physics frame and passes along an Array of Entities that meet the System's requirements.
 
 Since Systems are just Nodes, you can still use Godot's built-in virtual methods of `_process` and`_physics_process`, but the difference is that the `_system_*` ones are only going to be called on "active" systems that passed the initial validation mentioned previously.
+
+#### Cross-System Communication
+You may want to communicate from one System to another System without necessarily knowing the names of the systems or storing references to them. (Standard Decoupling). You can solve this by using an [Event Singleton](https://www.gdquest.com/docs/guidelines/best-practices/godot-gdscript/event-bus/#using-an-event-singleton-to-avoid-spaghetti-code). Alternatively, you can use the built in signaling system in the SystemManager that dynamically creates signals and allows for arbitrary bulletin-board like communication since Systems are passed a reference to their SystemManager on `_system_init`. 
+
+SystemManager `emit(destination: String, payload) -> void` and `subscribe(destination: String, system: Node, callback_name: String) -> void` methods that let you emit or subscribe to an arbitrary "destination" string. Any System that subscribes to a string will receive a payload emitted by another System.
+
+**NOTE:** `payload` is a Variant, but if you pass in an Array, it will be split into additional parameters when the signal is emitted rather than being passed as an Array. If you want to emit an Array payload, you need to nest the Array inside of an Array.
+
+Here's an example (assume that both SystemA and SystemB have the following init code):
+```
+var system_manager: SystemManager
+func _system_init(_system_manager: SystemManager) -> bool:
+	system_manager = _system_manager
+```
+**System A**:
+```
+func _system_process(entities: Array, delta: float) -> void:
+	for e in entities:
+		var fake_condition: = true
+		if fake_condition:
+			system_manager.emit("fake_signal", [e, "hello])
+```
+
+**System B**:
+```
+func _system_ready() -> void:
+	system_manager.subscribe("fake_signal", self, "_on_fake_signal")
+
+func _on_fake_signal(entity: Entity, message: String) -> void:
+	prints(entity, message)
+```
+Here, SystemB and SystemA are able to communicate by emitting/subscribing to "fake_signal". No need to predefine your signals. That being said, it may be a good idea to do so in order to better keep track of where all your signals are coming from. Perhaps in the future, there will be debug functionality added to the SystemManager to help trace unused signals or to offer to option of requiring predefined signals.
 
 
 ## Contributing
