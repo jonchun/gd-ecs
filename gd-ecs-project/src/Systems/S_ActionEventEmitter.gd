@@ -29,8 +29,11 @@ func _system_process(entities: Array, delta: float) -> void:
 			var previous_state: Dictionary = input.history.back()
 			var current_state: Dictionary = input.state
 
+			var size : int = input.history.size() - 1
+			var history_slice : Array = input.history.slice(size - _double_tap_history_size + 1, size)
+
 			for action in current_state:
-				if is_action_double_pressed(action, current_state, input.history):
+				if is_action_double_pressed(action, current_state, history_slice.duplicate()):
 					system_manager.emit("action_double_pressed", [e, action])
 					# if the action is double-pressed, don't want to emit a normal pressed signal so continue
 					continue
@@ -41,14 +44,11 @@ func _system_process(entities: Array, delta: float) -> void:
 						system_manager.emit("action_released", [e, action])
 
 
-func is_action_double_pressed(action: int, current_state: Dictionary, history: Array) -> bool:
-	var size := history.size() - 1
-	var slice := history.slice(size - _double_tap_history_size + 1, size)
-
+static func is_action_double_pressed(action: int, current_state: Dictionary, history: Array) -> bool:
 	var pressed_flag: bool = false
 	var released_flag: bool = false
-	var _prev_tick: Dictionary = slice.pop_front()
-	for _this_tick in slice:
+	var _prev_tick: Dictionary = history.pop_front()
+	for _this_tick in history:
 		# check that the input was pressed for the first time
 		if _prev_tick.get(action) == false and _this_tick.get(action) == true:
 			pressed_flag = true
@@ -70,7 +70,7 @@ func is_action_double_pressed(action: int, current_state: Dictionary, history: A
 
 
 # Given an input state, return whether any of the values NOT action are true
-func is_other_action_pressed(action: int, current_state: Dictionary, previous_state: Dictionary) -> bool:
+static func is_other_action_pressed(action: int, current_state: Dictionary, previous_state: Dictionary) -> bool:
 	for a in current_state:
 		if a == action:
 			continue
