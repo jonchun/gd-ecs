@@ -69,9 +69,12 @@ func _get_configuration_warning() -> String:
 	return ""
 
 
-# Emits a payload to a destination. Any subscribed components will receive the Entity Node along with a Variant payload.
-func emit(destination: String, entity: Entity, payload) -> void:
-	emit_signal(get_destination_signal(destination), entity, payload)
+# Emits a payload to a destination. Any subscribed components will receive the payload
+func emit(destination: String, payload) -> void:
+	if not payload is Array:
+		payload = [payload]
+	payload.insert(0, get_destination_signal(destination))
+	callv("emit_signal", payload)
 
 
 func get_systems() -> Array:
@@ -93,11 +96,11 @@ func get_destination_signal(destination: String) -> String:
 
 
 # Subscribes to a destination. callback_name is the method to be called.
-func subscribe(destination: String, component: Node, callback_name: String) -> void:
+func subscribe(destination: String, system: Node, callback_name: String) -> void:
 	var dest_signal: String = get_destination_signal(destination)
-	if not is_connected(dest_signal, component, callback_name):
+	if not is_connected(dest_signal, system, callback_name):
 		# warning-ignore: return_value_discarded
-		connect(dest_signal, component, callback_name)
+		connect(dest_signal, system, callback_name)
 
 
 func validate_system(system: Node) -> bool:

@@ -31,14 +31,14 @@ func _system_process(entities: Array, delta: float) -> void:
 
 			for action in current_state:
 				if is_action_double_pressed(action, current_state, input.history):
-					system_manager.emit("action_double_pressed", e, action)
+					system_manager.emit("action_double_pressed", [e, action])
 					# if the action is double-pressed, don't want to emit a normal pressed signal so continue
 					continue
 				if previous_state.get(action) != current_state.get(action):
 					if current_state.get(action):
-						system_manager.emit("action_pressed", e, action)
+						system_manager.emit("action_pressed", [e, action])
 					else:
-						system_manager.emit("action_released", e, action)
+						system_manager.emit("action_released", [e, action])
 
 
 func is_action_double_pressed(action: int, current_state: Dictionary, history: Array) -> bool:

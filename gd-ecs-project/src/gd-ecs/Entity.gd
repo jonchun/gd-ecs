@@ -1,3 +1,4 @@
+tool
 class_name Entity
 extends Node
 
@@ -15,6 +16,13 @@ func _ready() -> void:
 	set_process_input(false)
 	for child in get_children():
 		register_component(child)
+
+
+func _get_configuration_warning() -> String:
+	for child in get_children():
+		if ECS.is_component(child):
+			return ""
+	return "This Entity currently has no Components!"
 
 
 func add_child(node: Node, legible_unique_name := true) -> void:

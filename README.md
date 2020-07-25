@@ -73,6 +73,11 @@ Before you flip out about my not following ECS to the letter, hear me out -- I a
 
 Since you declare an Entity by creating a base Node, attaching the `Entity.gd` script, and then adding just a bunch of children Components, it is perfect for saving in a PackedScene `.tscn` file. See the repo-included `Player.tscn` file for an example.
 
+
+### Entity API
+When processing an entity, you usually want to be able to access its Components. The easiest ways to do this are with `get_component(component_name: String) -> Node` and `get_component(component_name: String) -> Array`. They're pretty self-explanatory. `get_component()` returns the first matching Component, and `get_components()` returns all matching Components. There is a little bit of additional complexity here since an Entity can have duplicates of the same Component type, but I'll worry about this problem in the future :)
+
+
 ## Systems
 Systems are managed by a SystemManager Node. They too, are determined by duck-typing and gd-ecs checks for the existence of a `system_name` property. There is a built-in `System.gd` Node that can be extended for most use-cases, but a completely custom System node can be built since gd-ecs relies strictly on duck-typing to determine whether a System is valid or not.
 
@@ -118,6 +123,7 @@ Systems have 3 virtual methods that get called automatically by the SystemManage
 3. `_system_physics_process(entities: Array, delta: float) -> void:` does exactly what you might guess. It is called on every physics frame and passes along an Array of Entities that meet the System's requirements.
 
 Since Systems are just Nodes, you can still use Godot's built-in virtual methods of `_process` and`_physics_process`, but the difference is that the `_system_*` ones are only going to be called on "active" systems that passed the initial validation mentioned previously.
+
 
 ## Contributing
 
