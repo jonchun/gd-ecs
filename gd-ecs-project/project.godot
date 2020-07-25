@@ -24,10 +24,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Components/C_Input.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "C_IsKinematicBody2D",
 "language": "GDScript",
-"path": "res://src/Components/C_KinematicBody2D.gd"
+"path": "res://src/Components/C_IsKinematicBody2D.gd"
 }, {
 "base": "Node",
 "class": "C_Jump",

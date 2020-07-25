@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/gd-ecs/Entity.gd" type="Script" id=1]
-[ext_resource path="res://src/Components/C_KinematicBody2D.gd" type="Script" id=2]
+[ext_resource path="res://src/Components/C_IsKinematicBody2D.gd" type="Script" id=2]
 [ext_resource path="res://src/Components/C_Sprite.gd" type="Script" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://src/Components/C_KinematicMotion2D.gd" type="Script" id=5]
