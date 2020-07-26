@@ -8,3 +8,9 @@ static func is_entity(node: Node) -> bool:
 
 static func is_system(node: Node) -> bool:
 	return true if node.get("system_name") else false
+
+static func matches_entity_filter(entity: Node, filter: Array) -> bool:
+	var entity_class: String = entity.get_class()
+	if not entity_class in filter or "!%s" % entity_class in filter:
+		return false
+	return true

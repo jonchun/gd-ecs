@@ -8,7 +8,7 @@ func _init() -> void:
 	tps = Globals.INPUT_TPS
 
 
-func _system_process(entities: Array, delta: float) -> void:
+func _system_process(entities: Array, _delta: float) -> void:
 	for e in entities:
 		var inputs: Array = e.get_components("C_Input")
 		for input in inputs:

@@ -41,7 +41,7 @@ func get_component(component_name: String) -> Node:
 
 # Returns all matching components
 func get_components(component_name: String) -> Array:
-	var results: Array
+	var results := []
 	for component in components:
 		if component.component_name == component_name:
 			results.append(component)

@@ -1,0 +1,438 @@
+{
+	"textures": [
+		{
+			"image": "CharacterC.png",
+			"size": {
+				"w": 618,
+				"h": 27
+			},
+			"sprites": [
+				{
+					"filename": "Run/Run_02.png",
+					"region": {
+						"x": 1,
+						"y": 1,
+						"w": 21,
+						"h": 25
+					},
+					"margin": {
+						"x": 5,
+						"y": 7,
+						"w": 11,
+						"h": 7
+					}
+				},
+				{
+					"filename": "Walk/Walk_03.png",
+					"region": {
+						"x": 24,
+						"y": 1,
+						"w": 21,
+						"h": 25
+					},
+					"margin": {
+						"x": 5,
+						"y": 7,
+						"w": 11,
+						"h": 7
+					}
+				},
+				{
+					"filename": "Air/Air_00.png",
+					"region": {
+						"x": 47,
+						"y": 1,
+						"w": 20,
+						"h": 25
+					},
+					"margin": {
+						"x": 5,
+						"y": 7,
+						"w": 12,
+						"h": 7
+					}
+				},
+				{
+					"filename": "Jump/Jump_01.png",
+					"region": {
+						"x": 69,
+						"y": 1,
+						"w": 20,
+						"h": 25
+					},
+					"margin": {
+						"x": 5,
+						"y": 7,
+						"w": 12,
+						"h": 7
+					}
+				},
+				{
+					"filename": "Run/Run_00.png",
+					"region": {
+						"x": 91,
+						"y": 1,
+						"w": 20,
+						"h": 25
+					},
+					"margin": {
+						"x": 5,
+						"y": 7,
+						"w": 12,
+						"h": 7
+					}
+				},
+				{
+					"filename": "Walk/Walk_01.png",
+					"region": {
+						"x": 113,
+						"y": 1,
+						"w": 20,
+						"h": 25
+					},
+					"margin": {
+						"x": 5,
+						"y": 7,
+						"w": 12,
+						"h": 7
+					}
+				},
+				{
+					"filename": "Back/Back_00.png",
+					"region": {
+						"x": 135,
+						"y": 1,
+						"w": 19,
+						"h": 25
+					},
+					"margin": {
+						"x": 6,
+						"y": 7,
+						"w": 13,
+						"h": 7
+					}
+				},
+				{
+					"filename": "Climb/Climb_00.png",
+					"region": {
+						"x": 156,
+						"y": 1,
+						"w": 19,
+						"h": 25
+					},
+					"margin": {
+						"x": 6,
+						"y": 7,
+						"w": 13,
+						"h": 7
+					}
+				},
+				{
+					"filename": "Climb/Climb_01.png",
+					"region": {
+						"x": 177,
+						"y": 1,
+						"w": 19,
+						"h": 25
+					},
+					"margin": {
+						"x": 6,
+						"y": 7,
+						"w": 13,
+						"h": 7
+					}
+				},
+				{
+					"filename": "Climb/Climb_02.png",
+					"region": {
+						"x": 198,
+						"y": 1,
+						"w": 19,
+						"h": 25
+					},
+					"margin": {
+						"x": 6,
+						"y": 7,
+						"w": 13,
+						"h": 7
+					}
+				},
+				{
+					"filename": "Climb/Climb_03.png",
+					"region": {
+						"x": 219,
+						"y": 1,
+						"w": 19,
+						"h": 25
+					},
+					"margin": {
+						"x": 6,
+						"y": 7,
+						"w": 13,
+						"h": 7
+					}
+				},
+				{
+					"filename": "Hit/Hit_01.png",
+					"region": {
+						"x": 240,
+						"y": 1,
+						"w": 22,
+						"h": 24
+					},
+					"margin": {
+						"x": 2,
+						"y": 8,
+						"w": 10,
+						"h": 8
+					}
+				},
+				{
+					"filename": "Hit/Hit_00.png",
+					"region": {
+						"x": 264,
+						"y": 1,
+						"w": 21,
+						"h": 24
+					},
+					"margin": {
+						"x": 4,
+						"y": 8,
+						"w": 11,
+						"h": 8
+					}
+				},
+				{
+					"filename": "Hit/Hit_02.png",
+					"region": {
+						"x": 287,
+						"y": 1,
+						"w": 21,
+						"h": 24
+					},
+					"margin": {
+						"x": 4,
+						"y": 8,
+						"w": 11,
+						"h": 8
+					}
+				},
+				{
+					"filename": "Idle/Idle_00.png",
+					"region": {
+						"x": 310,
+						"y": 1,
+						"w": 20,
+						"h": 24
+					},
+					"margin": {
+						"x": 5,
+						"y": 8,
+						"w": 12,
+						"h": 8
+					}
+				},
+				{
+					"filename": "Punch/Punch_00.png",
+					"region": {
+						"x": 332,
+						"y": 1,
+						"w": 20,
+						"h": 24
+					},
+					"margin": {
+						"x": 5,
+						"y": 8,
+						"w": 12,
+						"h": 8
+					}
+				},
+				{
+					"filename": "Punch/Punch_01.png",
+					"region": {
+						"x": 354,
+						"y": 1,
+						"w": 20,
+						"h": 24
+					},
+					"margin": {
+						"x": 5,
+						"y": 8,
+						"w": 12,
+						"h": 8
+					}
+				},
+				{
+					"filename": "Punch/Punch_02.png",
+					"region": {
+						"x": 376,
+						"y": 1,
+						"w": 20,
+						"h": 24
+					},
+					"margin": {
+						"x": 5,
+						"y": 8,
+						"w": 12,
+						"h": 8
+					}
+				},
+				{
+					"filename": "Run/Run_01.png",
+					"region": {
+						"x": 398,
+						"y": 1,
+						"w": 20,
+						"h": 24
+					},
+					"margin": {
+						"x": 5,
+						"y": 8,
+						"w": 12,
+						"h": 8
+					}
+				},
+				{
+					"filename": "Run/Run_03.png",
+					"region": {
+						"x": 420,
+						"y": 1,
+						"w": 20,
+						"h": 24
+					},
+					"margin": {
+						"x": 5,
+						"y": 8,
+						"w": 12,
+						"h": 8
+					}
+				},
+				{
+					"filename": "Slash/Slash_00.png",
+					"region": {
+						"x": 442,
+						"y": 1,
+						"w": 20,
+						"h": 24
+					},
+					"margin": {
+						"x": 5,
+						"y": 8,
+						"w": 12,
+						"h": 8
+					}
+				},
+				{
+					"filename": "Slash/Slash_01.png",
+					"region": {
+						"x": 464,
+						"y": 1,
+						"w": 20,
+						"h": 24
+					},
+					"margin": {
+						"x": 5,
+						"y": 8,
+						"w": 12,
+						"h": 8
+					}
+				},
+				{
+					"filename": "Slash/Slash_02.png",
+					"region": {
+						"x": 486,
+						"y": 1,
+						"w": 20,
+						"h": 24
+					},
+					"margin": {
+						"x": 5,
+						"y": 8,
+						"w": 12,
+						"h": 8
+					}
+				},
+				{
+					"filename": "Slash/Slash_03.png",
+					"region": {
+						"x": 508,
+						"y": 1,
+						"w": 20,
+						"h": 24
+					},
+					"margin": {
+						"x": 5,
+						"y": 8,
+						"w": 12,
+						"h": 8
+					}
+				},
+				{
+					"filename": "Walk/Walk_00.png",
+					"region": {
+						"x": 530,
+						"y": 1,
+						"w": 20,
+						"h": 24
+					},
+					"margin": {
+						"x": 5,
+						"y": 8,
+						"w": 12,
+						"h": 8
+					}
+				},
+				{
+					"filename": "Walk/Walk_02.png",
+					"region": {
+						"x": 552,
+						"y": 1,
+						"w": 20,
+						"h": 24
+					},
+					"margin": {
+						"x": 5,
+						"y": 8,
+						"w": 12,
+						"h": 8
+					}
+				},
+				{
+					"filename": "Land/Land_00.png",
+					"region": {
+						"x": 574,
+						"y": 1,
+						"w": 21,
+						"h": 23
+					},
+					"margin": {
+						"x": 5,
+						"y": 9,
+						"w": 11,
+						"h": 9
+					}
+				},
+				{
+					"filename": "Jump/Jump_00.png",
+					"region": {
+						"x": 597,
+						"y": 1,
+						"w": 20,
+						"h": 23
+					},
+					"margin": {
+						"x": 6,
+						"y": 9,
+						"w": 12,
+						"h": 9
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:f13a1b505a8c61badb9b2d02c2d7bb3e:1c9c77e802a7b62a49592b752427894e:5ad64d42d0cfaa8105653c2708cc9a04$"
+	}
+}

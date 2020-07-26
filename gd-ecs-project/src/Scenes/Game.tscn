@@ -1,67 +1,152 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/Entities/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/gd-ecs/SystemManager.gd" type="Script" id=2]
-[ext_resource path="res://src/Systems/S_KinematicMotion2D.gd" type="Script" id=3]
+[ext_resource path="res://src/Utils/gd-ecs/SystemManager.gd" type="Script" id=2]
+[ext_resource path="res://src/Systems/S_Locomotion.gd" type="Script" id=3]
 [ext_resource path="res://src/Systems/S_PlayerInput.gd" type="Script" id=4]
 [ext_resource path="res://src/Systems/S_ActionEventEmitter.gd" type="Script" id=5]
 [ext_resource path="res://src/Systems/S_Jump.gd" type="Script" id=6]
+[ext_resource path="res://assets/tiles.png" type="Texture" id=7]
+[ext_resource path="res://src/Systems/S_DoubleJump.gd" type="Script" id=8]
+[ext_resource path="res://src/Systems/S_LocomotionAnimation.gd" type="Script" id=9]
+[ext_resource path="res://src/Systems/S_AnimationListener.gd" type="Script" id=10]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 958.516, 10 )
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="TileSet" id=9]
+0/name = "dirt_autotile"
+0/texture = ExtResource( 7 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 112, 0, 112, 32 )
+0/tile_mode = 1
+0/autotile/bitmask_mode = 0
+0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 320, Vector2( 0, 1 ), 325, Vector2( 1, 0 ), 320, Vector2( 1, 1 ), 256, Vector2( 2, 0 ), 320, Vector2( 2, 1 ), 64, Vector2( 3, 0 ), 256, Vector2( 3, 1 ), 260, Vector2( 4, 0 ), 320, Vector2( 4, 1 ), 325, Vector2( 5, 0 ), 64, Vector2( 5, 1 ), 65 ]
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 16, 16 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [ Vector3( 4, 1, 20 ) ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 1 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 2 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 3 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 4 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 5 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 4, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 7 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 5, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+1/name = "crate"
+1/texture = ExtResource( 7 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 128, 64, 16, 16 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "dirt_single"
+2/texture = ExtResource( 7 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 208, 0, 16, 32 )
+2/tile_mode = 2
+2/autotile/icon_coordinate = Vector2( 0, 0 )
+2/autotile/tile_size = Vector2( 16, 16 )
+2/autotile/spacing = 0
+2/autotile/occluder_map = [  ]
+2/autotile/navpoly_map = [  ]
+2/autotile/priority_map = [  ]
+2/autotile/z_index_map = [  ]
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
 
 [node name="Game" type="Node2D"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 231.229, 579.253 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource( 1 )
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
-margin_left = -951.0
-margin_top = -5.0
-margin_right = 953.0
-margin_bottom = 11.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2( 1008.09, 413.724 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-shape = SubResource( 1 )
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D2"]
-margin_left = -951.0
-margin_top = -5.0
-margin_right = 953.0
-margin_bottom = 11.0
-color = Color( 0.0117647, 0.0431373, 0.823529, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2( 1457.65, 189.883 )
-rotation = -0.239787
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-shape = SubResource( 1 )
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D3"]
-margin_left = -951.0
-margin_top = -5.0
-margin_right = 953.0
-margin_bottom = 11.0
-color = Color( 0.945098, 0, 0.266667, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 470.998, 102.645 )
 
 [node name="SystemManager" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -72,8 +157,38 @@ script = ExtResource( 4 )
 [node name="S_ActionEventEmitter" type="Node" parent="SystemManager"]
 script = ExtResource( 5 )
 
-[node name="S_KinematicMotion2D" type="Node" parent="SystemManager"]
+[node name="S_Locomotion" type="Node" parent="SystemManager"]
 script = ExtResource( 3 )
+
+[node name="S_LocomotionAnimation" type="Node" parent="SystemManager"]
+script = ExtResource( 9 )
+
+[node name="S_AnimationListener" type="Node" parent="SystemManager"]
+script = ExtResource( 10 )
 
 [node name="S_Jump" type="Node" parent="SystemManager"]
 script = ExtResource( 6 )
+
+[node name="S_DoubleJump" type="Node" parent="SystemManager"]
+script = ExtResource( 8 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 9 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -131070, 0, 3, -131069, 0, 4, -131068, 0, 4, -131067, 0, 1, -131066, 0, 2, -131065, 0, 0, -131064, 0, 4, -131063, 0, 65538, -65534, 0, 65539, -65533, 0, 65540, -65532, 0, 65540, -65531, 0, 65540, -65530, 0, 65540, -65529, 0, 65540, -65528, 0, 65540, -65527, 0, 65541, 65526, 0, 65537, 65527, 0, 1, 65528, 0, 2, 65529, 0, 2, 65530, 0, 1, 65531, 0, 4, 65532, 0, 0, 65533, 0, 4, 65534, 0, 0, 65535, 0, 0, 0, 0, 4, 1, 0, 4, 2, 0, 4, 3, 0, 4, 4, 0, 4, 5, 0, 4, 6, 0, 4, 7, 0, 4, 8, 0, 4, 9, 0, 4, 131062, 0, 65539, 131063, 0, 65540, 131064, 0, 65540, 131065, 0, 65540, 131066, 0, 65540, 131067, 0, 65540, 131068, 0, 65540, 131069, 0, 65540, 131070, 0, 65540, 131071, 0, 65540, 65536, 0, 65536, 65537, 0, 65540, 65538, 0, 65540, 65539, 0, 65540, 65540, 0, 65540, 65541, 0, 65540, 65542, 0, 65540, 65543, 0, 65540, 65544, 0, 65540, 65545, 0, 65541, 196598, 0, 0, 196599, 0, 0, 196600, 0, 0, 196601, 0, 0, 196602, 0, 0, 196603, 0, 0, 196604, 0, 0, 196605, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer"]
+margin_left = -504.0
+margin_top = -443.0
+margin_right = 496.0
+margin_bottom = 557.0
+rect_min_size = Vector2( 1000, 1000 )
+color = Color( 0.160784, 0.568627, 0.521569, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

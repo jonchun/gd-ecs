@@ -17,10 +17,10 @@ func _init() -> void:
 
 func _ready() -> void:
 	# double_tap_delay is an exported variable so need to wait until _ready()
-	_double_tap_history_size = ceil(double_tap_delay / MS_PER_TICK)
+	_double_tap_history_size = int(ceil(double_tap_delay / MS_PER_TICK))
 
 
-func _system_process(entities: Array, delta: float) -> void:
+func _system_process(entities: Array, _delta: float) -> void:
 	for e in entities:
 		var inputs: Array = e.get_components("C_Input")
 		for input in inputs:
@@ -29,8 +29,10 @@ func _system_process(entities: Array, delta: float) -> void:
 			var previous_state: Dictionary = input.history.back()
 			var current_state: Dictionary = input.state
 
-			var size : int = input.history.size() - 1
-			var history_slice : Array = input.history.slice(size - _double_tap_history_size + 1, size)
+			var size: int = input.history.size() - 1
+			var history_slice: Array = input.history.slice(
+				size - _double_tap_history_size + 1, size
+			)
 
 			for action in current_state:
 				if is_action_double_pressed(action, current_state, history_slice.duplicate()):
@@ -67,7 +69,6 @@ static func is_action_double_pressed(action: int, current_state: Dictionary, his
 
 	# if it was pressed and released exactly once, and the current state is pressed, it is double-pressed this tick
 	return released_flag and current_state.get(action) == true
-
 
 # Given an input state, return whether any of the values NOT action are true
 static func is_other_action_pressed(action: int, current_state: Dictionary, previous_state: Dictionary) -> bool:

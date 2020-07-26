@@ -200,9 +200,10 @@ Here, SystemB and SystemA are able to communicate by emitting/subscribing to "fa
 Please open a Github Issue! I'd love to get Tests set up on all of this but have been too lazy... I'd love it if someone were to contribute some... particularly for the QueryManager since it's pretty important for it to pick up changes properly (when adding/removing entities/components)
 
 
-## Authors
+## Credits
 
-* **Jonathan  Chun**
+* **Jonathan  Chun** Author
+* **Buch** Demo Art from [OpenGameArt.org](https://opengameart.org/content/a-platformer-in-the-forest)
 
 
 ## License

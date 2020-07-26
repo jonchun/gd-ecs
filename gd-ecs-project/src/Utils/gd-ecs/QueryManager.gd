@@ -10,15 +10,18 @@ func _init(_system_manager: Node) -> void:
 
 
 func _ready() -> void:
+	# warning-ignore: return_value_discarded
 	connect("tree_exiting", self, "_on_tree_exiting")
 	var tree: SceneTree = get_tree()
+	# warning-ignore: return_value_discarded
 	tree.connect("node_added", self, "_on_node_added")
+	# warning-ignore: return_value_discarded
 	tree.connect("node_removed", self, "_on_node_removed")
 
 
 # Returns an Array of all entities that have the components defined in query_list
 # Assumes that the query_list is sorted
-func query(query_list: Array, entity_filter: = []) -> Array:
+func query(query_list: Array, entity_filter := []) -> Array:
 	var results := []
 	var entity_list: Array = component_groups.get(query_list, [])
 	for entity_id in entity_list:

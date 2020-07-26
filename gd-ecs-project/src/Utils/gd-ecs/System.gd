@@ -17,9 +17,9 @@ func _system_ready() -> void:
 	pass
 
 
-func _system_process(entities: Array, delta: float) -> void:
+func _system_process(_entities: Array, _delta: float) -> void:
 	pass
 
 
-func _system_physics_process(entities: Array, delta: float) -> void:
+func _system_physics_process(_entities: Array, _delta: float) -> void:
 	pass
