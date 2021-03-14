@@ -77,7 +77,7 @@ Since you declare an Entity by creating a base Node, attaching the `Entity.gd` s
 
 
 ### Entity API
-When processing an entity, you usually want to be able to access its Components. The easiest ways to do this are with `get_component(component_name: String) -> Node` and `get_component(component_name: String) -> Array`. They're pretty self-explanatory. `get_component()` returns the first matching Component, and `get_components()` returns all matching Components. There is a little bit of additional complexity here since an Entity can have duplicates of the same Component type, but I'll worry about this problem in the future :)
+When processing an entity, you usually want to be able to access its Components. The easiest ways to do this is with `get_component(component_name: String) -> Node` and `get_components(component_name: String) -> Array`. They're pretty self-explanatory. `get_component()` returns the first matching Component, and `get_components()` returns all matching Components. There is a little bit of additional complexity here since an Entity can have duplicates of the same Component type, but I'll worry about this problem in the future :)
 
 
 ## Systems
