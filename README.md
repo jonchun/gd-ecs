@@ -10,7 +10,7 @@ This ECS attempt is not going to and not meant to magically make your Godot Game
 
 Just a select few articles that support my case that ECS has expanded beyond its original scope and can be utilized even if it's not for its intended original purpose of cache optimization.
  - [Tobias Stein](https://www.gamasutra.com/blogs/TobiasStein/20171122/310172/The_EntityComponentSystem__An_awesome_gamedesign_pattern_in_C_Part_1.php)
-	 - "memory efficiency" is only ONE of the listed benefits. Even if we don't get the memory efficiency benefit, we stil get the rest of them by following an ECS-like architecture.
+	 - "memory efficiency" is only ONE of the listed benefits. Even if we don't get the memory efficiency benefit, we still get the rest of them by following an ECS-like architecture.
  - [Richard Lord](https://www.richardlord.net/blog/ecs/what-is-an-entity-framework.html)'s post on the topic.
  - [Erik Hazzard](http://vasir.net/blog/game-development/how-to-build-entity-component-system-in-javascript)
 
